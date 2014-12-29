@@ -1,0 +1,65 @@
+" don't put comment symbols automatically
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" leave insert mode quickly
+if ! has('gui_running')
+  set ttimeoutlen=10
+  augroup FastEscape
+    autocmd!
+    au InsertEnter * set timeoutlen=0
+    au InsertLeave * set timeoutlen=1000
+  augroup END
+endif
+
+" set colorscheme
+colorscheme jellybeans
+highlight nonText ctermbg=NONE
+highlight Normal ctermbg=NONE
+
+" use only one <Leader> for EasyMotion
+map <Leader> <Plug>(easymotion-prefix)
+
+" map 'yank'/'copy to clipboard' in visual mode
+vmap <Leader>y "+y
+
+" map Enter and  ✠ (U+2720) to create spaces without leaving Normal Mode
+nmap <CR> o<ESC>
+nmap ✠ O<ESC>
+
+set cursorline
+
+augroup CursorLineOnlyInActiveWindow
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
+augroup END
+
+highlight SignColumn ctermbg=233
+highlight GitGutterAdd ctermbg=233 ctermfg=34
+highlight GitGutterChange ctermbg=233 ctermfg=226
+highlight GitGutterDelete ctermbg=233 ctermfg=124
+highlight GitGutterChangeDelete ctermbg=233 ctermfg=166
+hi LineNr ctermbg=233
+hi CursorLine ctermbg=233
+
+highlight CursorLineNr ctermfg=8 ctermbg=234
+au InsertEnter * highlight CursorLineNr ctermfg=16 ctermbg=197
+au InsertLeave * highlight CursorLineNr ctermfg=8 ctermbg=234
+
+hi MatchParen cterm=bold ctermfg=13 ctermbg=none
+
+" set tab = 2 spaces
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+
+" set new split window position
+set splitbelow
+set splitright
+
+" map split windows navigation
+nnoremap <S-J> <C-W><C-J>
+nnoremap <S-K> <C-W><C-K>
+nnoremap <S-L> <C-W><C-L>
+nnoremap <S-H> <C-W><C-H>
+
