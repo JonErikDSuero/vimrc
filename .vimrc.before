@@ -1,1 +1,6 @@
 let mapleader = " "
+
+" Show Hidden Files
+let g:ctrlp_show_hidden = 1
+let NERDTreeShowHidden=1
+
