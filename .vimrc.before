@@ -2,8 +2,25 @@ let mapleader = " "
 
 " Show Hidden Files
 let g:ctrlp_show_hidden = 1
-let NERDTreeShowHidden=1
 
+" Setup some default ignores
+let g:ctrlp_custom_ignore = {
+      \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
+      \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
+      \}
+
+" Cache the previous list
 let g:ctrlp_use_caching = 1
 
+" Go to through buffers
+nmap <Leader>k :BuffergatorMruCycleNext<cr>
+nmap <Leader>j :BuffergatorMruCyclePrev<cr>
+
+" View the entire list of buffers open
+nmap <leader>l :BuffergatorOpen<cr>
+
+let NERDTreeShowHidden=1
+
+" use f for finding a character
+nmap f <Plug>(easymotion-s)
 
