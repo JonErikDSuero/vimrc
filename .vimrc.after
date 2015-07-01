@@ -89,3 +89,9 @@ command Ntf NERDTreeFind
 "go back to previous file
 nmap <C-D> :e#<kEnter>
 
+" Persistent Undo
+set undofile
+set undodir=$HOME/.vim/undo
+set undolevels=1000
+set undoreload=10000
+
