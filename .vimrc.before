@@ -1,6 +1,9 @@
 let mapleader = " "
 
 " Show Hidden Files
+let NERDTreeShowHidden=1
+
+" Show Hidden Files
 let g:ctrlp_show_hidden = 1
 
 " Setup some default ignores
@@ -18,8 +21,6 @@ nmap <Leader>j :BuffergatorMruCyclePrev<cr>
 
 " View the entire list of buffers open
 nmap <leader>l :BuffergatorOpen<cr>
-
-let NERDTreeShowHidden=1
 
 " use f for finding a character
 nmap f <Plug>(easymotion-s)
