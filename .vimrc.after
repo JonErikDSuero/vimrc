@@ -95,3 +95,17 @@ set undodir=$HOME/.vim/undo
 set undolevels=1000
 set undoreload=10000
 
+"folding settings
+set foldmethod=syntax   "fold based on indent
+set foldnestmax=10      "deepest fold is 10 levels
+set nofoldenable        "dont fold by default
+set foldlevel=1         "this is just what i use
+nmap a za
+
+" Go to through buffers
+nmap <Leader>k :BuffergatorMruCycleNext<cr>
+nmap <Leader>j :BuffergatorMruCyclePrev<cr>
+
+" View the entire list of buffers open
+nnoremap <leader>l :BuffergatorOpen<cr>
+

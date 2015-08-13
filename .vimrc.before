@@ -15,13 +15,6 @@ let g:ctrlp_custom_ignore = {
 " Cache the previous list
 let g:ctrlp_use_caching = 1
 
-" Go to through buffers
-nmap <Leader>k :BuffergatorMruCycleNext<cr>
-nmap <Leader>j :BuffergatorMruCyclePrev<cr>
-
-" View the entire list of buffers open
-nmap <leader>l :BuffergatorOpen<cr>
-
 " use f for finding a character
 nmap f <Plug>(easymotion-s)
 
