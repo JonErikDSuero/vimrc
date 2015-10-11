@@ -1,3 +1,7 @@
+" disable snipmate
+call janus#disable_plugin('snipmate')
+
+" set Leader key
 let mapleader = " "
 
 " Show Hidden Files
@@ -17,6 +21,9 @@ let g:ctrlp_use_caching = 1
 
 " sort buffer by basename
 let g:buffergator_sort_regime = "basename"
+
+" disable h, and H for ack.vim
+let g:ack_mappings = { "h": "", "H": "" }
 
 " use f for finding a character
 nmap f <Plug>(easymotion-s)
