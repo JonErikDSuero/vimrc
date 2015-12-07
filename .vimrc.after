@@ -25,10 +25,6 @@ map <Leader> <Plug>(easymotion-prefix)
 " map 'yank'/'copy to clipboard' in visual mode
 vmap <Leader>y "+y
 
-" map Enter and  ✠ (U+2720) to create spaces without leaving Normal Mode
-nmap <CR> o<ESC>
-nmap ✠ O<ESC>
-
 " map jj to <Esc>
 inoremap jj <ESC>
 autocmd InsertEnter * set timeoutlen=200
@@ -53,6 +49,9 @@ highlight GitGutterDelete ctermbg=233 ctermfg=124
 highlight GitGutterChangeDelete ctermbg=233 ctermfg=166
 hi LineNr ctermbg=233
 hi CursorLine ctermbg=233
+
+" color tab characters
+hi SpecialKey cterm=NONE,underline ctermbg=232 ctermfg=235
 
 highlight CursorLineNr ctermfg=8 ctermbg=234
 au InsertEnter * highlight CursorLineNr ctermfg=16 ctermbg=197
@@ -86,6 +85,8 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 command Ntf NERDTreeFind
 
+nmap <S-F> :NERDTreeFind<kEnter>
+
 "go back to previous file
 nmap <C-D> :e#<kEnter>
 
@@ -108,4 +109,22 @@ nmap <Leader>j :BuffergatorMruCyclePrev<cr>
 
 " View the entire list of buffers open
 nnoremap <leader>l :BuffergatorOpen<cr>
+
+" ~~~~~~~~~~~~~ The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+nnoremap \ :Ag<SPACE>
+
+" bind Ctrl+K to grep word under cursor
+nnoremap <C-K> :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+" ~~~~~~~~~~~~~ The Silver Searcher (end)
 
