@@ -104,8 +104,8 @@ set foldlevel=1         "this is just what i use
 nmap a za
 
 " Go to through buffers
-nmap <Leader>k :BuffergatorMruCycleNext<cr>
-nmap <Leader>j :BuffergatorMruCyclePrev<cr>
+nmap <Leader>k ]b
+nmap <Leader>j [b
 
 " View the entire list of buffers open
 nnoremap <leader>l :BuffergatorOpen<cr>
