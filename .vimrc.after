@@ -1,6 +1,9 @@
 " don't put comment symbols automatically
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+" autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Insert Mode
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " leave insert mode quickly
 if ! has('gui_running')
   set ttimeoutlen=10
@@ -11,59 +14,92 @@ if ! has('gui_running')
   augroup END
 endif
 
-" set colorscheme
-colorscheme jellybeans
-highlight nonText ctermbg=NONE
-highlight Normal ctermbg=NONE
 
-" :w!! to save read-only files
-cmap w!! %!sudo tee > /dev/null %
-
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Easy Motion
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " use only one <Leader> for EasyMotion
 map <Leader> <Plug>(easymotion-prefix)
 
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Paste
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " map 'yank'/'copy to clipboard' in visual mode
 vmap <Leader>y "+y
 
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Escape
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " map jj to <Esc>
 inoremap jj <ESC>
 autocmd InsertEnter * set timeoutlen=200
 autocmd InsertLeave * set timeoutlen=1000
 
-noremap 8 }
-noremap 9 {
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Navigation
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" insert at end of line
 nnoremap a A
 
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Cursor Line
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" show cursor line
 set cursorline
 
+" only show cursor line on currently active window
 augroup CursorLineOnlyInActiveWindow
   autocmd!
   autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
   autocmd WinLeave * setlocal nocursorline
 augroup END
 
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Colors
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" colorscheme
+colorscheme jellybeans
+highlight nonText ctermbg=NONE
+highlight Normal ctermbg=NONE
+
+" git gutter
 highlight SignColumn ctermbg=233
 highlight GitGutterAdd ctermbg=233 ctermfg=34
 highlight GitGutterChange ctermbg=233 ctermfg=226
 highlight GitGutterDelete ctermbg=233 ctermfg=124
 highlight GitGutterChangeDelete ctermbg=233 ctermfg=166
+
+" line numbers
 hi LineNr ctermbg=233
+
+" cursor line
 hi CursorLine ctermbg=233
-
-" color tab characters
-hi SpecialKey cterm=NONE,underline ctermbg=232 ctermfg=235
-
 highlight CursorLineNr ctermfg=8 ctermbg=234
 au InsertEnter * highlight CursorLineNr ctermfg=16 ctermbg=197
 au InsertLeave * highlight CursorLineNr ctermfg=8 ctermbg=234
 
+" matching brackets
 hi MatchParen cterm=bold ctermfg=13 ctermbg=none
 
+" character tab
+hi SpecialKey cterm=NONE,underline ctermbg=232 ctermfg=235
+
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Spacings
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " set tab = 2 spaces
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Split Windows
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " set new split window position
 set splitbelow
 set splitright
@@ -74,35 +110,55 @@ nnoremap <S-K> <C-W><C-K>
 nnoremap <S-L> <C-W><C-L>
 nnoremap <S-H> <C-W><C-H>
 
-" remap zoomwin
-nmap <C-o> <C-w>o
 
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Save
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " s for save
 nmap s :w<kEnter>  "Works in normal mode, must press Esc first"
+
+" :w!! to save read-only files
+cmap w!! %!sudo tee > /dev/null %
 
 " automatically remove trailing whitespaces before saving
 autocmd BufWritePre * :%s/\s\+$//e
 
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ZoomWin
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nmap <C-o> <C-w>o
+
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Nerd Tree
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 command Ntf NERDTreeFind
 
 nmap <S-F> :NERDTreeFind<kEnter>
 
-"go back to previous file
-nmap <C-D> :e#<kEnter>
 
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " Persistent Undo
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" note: must run 'mkdir $HOME/.vim/undo'
 set undofile
 set undodir=$HOME/.vim/undo
 set undolevels=1000
 set undoreload=10000
 
-"folding settings
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Folding
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 set foldmethod=syntax   "fold based on indent
 set foldnestmax=10      "deepest fold is 10 levels
 set nofoldenable        "dont fold by default
 set foldlevel=1         "this is just what i use
-nmap a za
 
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Buffers
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " Go to through buffers
 nmap <Leader>k ]b
 nmap <Leader>j [b
@@ -110,7 +166,10 @@ nmap <Leader>j [b
 " View the entire list of buffers open
 nnoremap <leader>l :BuffergatorOpen<cr>
 
-" ~~~~~~~~~~~~~ The Silver Searcher
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" The Silver Searcher
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 if executable('ag')
   " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
@@ -126,5 +185,4 @@ nnoremap \ :Ag<SPACE>
 
 " bind Ctrl+K to grep word under cursor
 nnoremap <C-K> :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-" ~~~~~~~~~~~~~ The Silver Searcher (end)
 
