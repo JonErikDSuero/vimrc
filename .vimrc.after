@@ -76,10 +76,10 @@ highlight GitGutterChangeDelete ctermbg=233 ctermfg=166
 hi LineNr ctermbg=233
 
 " cursor line
-hi CursorLine ctermbg=233
-highlight CursorLineNr ctermfg=8 ctermbg=234
+hi CursorLine ctermbg=234
+highlight CursorLineNr ctermfg=8 ctermbg=17
 au InsertEnter * highlight CursorLineNr ctermfg=16 ctermbg=197
-au InsertLeave * highlight CursorLineNr ctermfg=8 ctermbg=234
+au InsertLeave * highlight CursorLineNr ctermfg=8 ctermbg=17
 
 " matching brackets
 hi MatchParen cterm=bold ctermfg=13 ctermbg=none
