@@ -1,23 +1,12 @@
 " disable snipmate
 call janus#disable_plugin('snipmate')
+call janus#disable_plugin('ctrlp')
 
 " set Leader key
 let mapleader = " "
 
 " Show Hidden Files
 let NERDTreeShowHidden=1
-
-" Show Hidden Files
-let g:ctrlp_show_hidden = 1
-
-" Setup some default ignores
-let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
-      \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
-      \}
-
-" Cache the previous list
-let g:ctrlp_use_caching = 1
 
 " sort buffer by basename
 let g:buffergator_sort_regime = "basename"
