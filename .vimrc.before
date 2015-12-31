@@ -1,6 +1,7 @@
 " disable snipmate
 call janus#disable_plugin('snipmate')
 call janus#disable_plugin('ctrlp')
+call janus#disable_plugin('vim-gitgutter')
 
 " set Leader key
 let mapleader = " "
