@@ -1,5 +1,5 @@
 " don't put comment symbols automatically
-" autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " Insert Mode
@@ -28,6 +28,9 @@ map <Leader> <Plug>(easymotion-prefix)
 " map 'yank'/'copy to clipboard' in visual mode
 vmap <Leader>y "+y
 
+
+" map Enter to create spaces without leaving Normal Mode
+nmap <CR> o<ESC>
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " Escape
