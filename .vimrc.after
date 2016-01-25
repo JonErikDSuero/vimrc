@@ -29,6 +29,12 @@ map <Leader> <Plug>(easymotion-prefix)
 vmap <Leader>y "+y
 
 
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Copy Filename to Clipboard
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nnor <Leader>f :let @*=expand("%")<CR>      " Mnemonic: yank File Name
+
+
 " map Enter to create spaces without leaving Normal Mode
 nmap <CR> o<ESC>
 
